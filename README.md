@@ -1,0 +1,2 @@
+# practicasTensorFlow
+practicas del curso
