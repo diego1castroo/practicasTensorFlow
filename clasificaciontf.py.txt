@@ -1,0 +1,50 @@
+import pandas as pd
+import tensorflow as tf
+pwd
+cd ..
+cd datos
+ingresos = pd.read_csv('/Users/armando_de_jesus/Documents/anaconda/datos/ingresos.csv')
+ingreos
+ingresos['income'].unique()
+def cambio_valor(valor):
+	if valor == '<050k':
+		return 0
+	else:
+		return 1
+ingresos[´income´] = ingresos['income'.apply](cambio_valor)
+ingresos.head()
+from sklearn.model_selection import train_test_split
+datos_x = ingresos.drop('income', axis = 1)
+datos_x.head()
+datos_y = infresos['income']
+datos_y
+datos y = ingresos['income']
+x_train, x_test, y_train, y_test = train_test_aplit(datos_x, datos_y, test_size = 0.3)
+x_test.head()
+x_train.head()
+ingresos.columns
+gender = tf.feature_column.categorical_column_with_vocabulary_list("gender", ['Female, Male'])
+occupation = tf.feature_column.categorical_column_with_vocabulary_bucket("occupation", hash_bucket_size=1000)
+marital_status = tf.feature_column.categorical_column_with_vocabulary_bucket("marital-status", hash_bucket_size=1000)
+relationship = tf.feature_column.categorical_column_with_vocabulary_bucket("relationship", hash_bucket_size=1000)
+native_country = tf.feature_column.categorical_column_with_vocabulary_bucket("native-country", hash_bucket_size=1000)
+workclass = tf.feature_column.categorical_column_with_vocabulary_bucket("workclass", hash_bucket_size=1000)
+age = tf.feature_column.numeric_column("age")
+fnlwgt = tf.feature_column.numeric_column("fnlwgt")
+educational_num = tf.feature_column.numeric_column("educational-num")
+capital_gain = tf.feature_column.numeric_column("capital-gain")
+capital_loss = tf.feature_column.numeric_column("capital-loss")
+capital_loss = tf.feature_column.numeric_column("capital-loss")
+hours_per_week = tf.feature_column.numeric_column("hours-per-wek")
+columnas_categorias = [gender, ocupation, marital_status, relationship, native_country, workclass, age, fnlwgt, educational_num, capital_gain, capital_loss, hours_per_week]
+funcion_entrada = tf.estimator.inputs.pandas_input_fn(x=x_train, y=y_train, batch_size = 100, num_epochs = None, shuffle = True)
+modelo = tf.estimator.LinearClassifier(future.columns = columnas_categorias)
+modelo.train(input_fn = funcion_entrada, steps = 8000)
+funcion_prediccion = tf.estimator.inputs.pandas_input_fn(x=x_test, batch_size = len(x_test), shuffle = False)
+generador_predicciones = modelo.predict(input_fn = funcion_prediccion)
+predicciones = list(generador_predicciones)
+predicciones
+predicciones_finales = [prediccion['class_ids'][0] for prediccion in predicciones]
+predicciones_finales
+from sklearn.metrics import classification_report
+print(classification_report(y_test, predicciones_finales))

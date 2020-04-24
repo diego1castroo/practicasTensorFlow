@@ -1,0 +1,17 @@
+impor tensorflow as tf
+
+mensaje1 = tf.constant("hola")
+mensaje2 = tf.constant("mundo")
+print (mensaje1)
+type(mensaje1)
+with tf.Session() as sesion:
+	resultado = sesion.run(mensaje1 + mensaje2)
+print resultado 
+
+
+a = tf.constant(10)
+b = tf.constant(5)
+a + b
+with tf.Session() as sesion:
+	resultado = sesion.run(a + b)
+print (resultado) 

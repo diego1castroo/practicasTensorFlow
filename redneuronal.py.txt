@@ -1,0 +1,31 @@
+impor tensorflow as tf
+import numpy as np
+aleatorio_a = np.random.uniform(0,50,(4,4))
+aleatorio_a
+aleatorio_b = np.random.uniform(0,50,(4,1))
+aleatorio_b
+a = tf.placeholder(tf.float32)
+a = tf.placeholder(tf.float32)
+suma = a + b 
+multiplicacion = a * b
+with tf.Session() as sesion:
+	resultado_suma = sesion.run(suma, feed_dict = {a:10, b:10})
+	print(resultado_suma)) 
+with tf.Session() as sesion:
+	resultado_multiplicacion = sesion.run(multiplicacion, feed_dict = {a:aleatoria_a, b:aleatorio_b})
+	print(resultado_multiplicacion))
+caracteristicas = 10
+neuronas = 4
+x = tf.placeholder(tf.float32(None,caracteristicas))
+w = tf.Variable(tf.random.normal([caracteristicas, neuronas]))
+b = tf.Variable(tf.ones([neuronas]))
+multiplicacion = tf.matmul(x,w)
+z = tf.add(multiplicacion, b)
+activacion = tf.sigmoid(z)
+inicializacion = tf.global_variables_initializer()
+valores_x = np.random([1, caracteristicas])
+valores_x
+with tf.Session() as sesion:
+	sesion.run(inicializacion})
+	resultado = sesion.run(activacion, feed_dict = {x:valores_x})
+print(resultado)
